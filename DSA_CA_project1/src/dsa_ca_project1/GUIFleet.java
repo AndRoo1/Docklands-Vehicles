@@ -122,6 +122,13 @@ public class GUIFleet extends javax.swing.JFrame {
             }
         });
 
+        txtRepairStatus.setEditable(false);
+        txtRepairStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRepairStatusActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("the repair shop");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -254,6 +261,10 @@ public class GUIFleet extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, brokenVehicle.getDeviceID() + " sent to maintenance.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtRepairStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRepairStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRepairStatusActionPerformed
 
     /**
      * @param args the command line arguments

@@ -61,10 +61,11 @@ public class GUIwaypoint extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Waypoint locationt location:");
+        jLabel1.setText("Waypoint location:");
 
         jLabel2.setText("Location History");
 
+        txtLocationHistory.setEditable(false);
         txtLocationHistory.setColumns(20);
         txtLocationHistory.setRows(5);
         jScrollPane1.setViewportView(txtLocationHistory);
