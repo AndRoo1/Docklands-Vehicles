@@ -13,7 +13,7 @@ public class EScooter extends Vehicle {
     //private int maxWeight;
     
     
-    //private boolean hasBasket;
+    //private boolean hasBasket; NO
 
 
     //similar to EBike
