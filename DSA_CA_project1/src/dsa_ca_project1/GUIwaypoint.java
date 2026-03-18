@@ -39,6 +39,7 @@ public class GUIwaypoint extends javax.swing.JFrame {
         txtLocationHistory = new javax.swing.JTextArea();
         DisplayBTN = new javax.swing.JButton();
         DeleteBTN = new javax.swing.JButton();
+        ToFleet = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,7 +54,7 @@ public class GUIwaypoint extends javax.swing.JFrame {
         txtDisplayArea.setColumns(20);
         txtDisplayArea.setRows(5);
 
-        txtLocationInput.setText("jTextField1");
+        txtLocationInput.setText("enter here");
         txtLocationInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLocationInputActionPerformed(evt);
@@ -82,6 +83,13 @@ public class GUIwaypoint extends javax.swing.JFrame {
             }
         });
 
+        ToFleet.setText("FLEET");
+        ToFleet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ToFleetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,13 +114,17 @@ public class GUIwaypoint extends javax.swing.JFrame {
                         .addGap(176, 176, 176))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ToFleet)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(ToFleet))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -173,6 +185,13 @@ public class GUIwaypoint extends javax.swing.JFrame {
         txtDisplayArea.setText("Cleared History.");
     }//GEN-LAST:event_DeleteBTNActionPerformed
 
+    private void ToFleetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToFleetActionPerformed
+                
+        GUIFleet fleetScreen = new GUIFleet();
+        fleetScreen.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_ToFleetActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -202,6 +221,7 @@ public class GUIwaypoint extends javax.swing.JFrame {
     private javax.swing.JButton AddWaypointBTN;
     private javax.swing.JButton DeleteBTN;
     private javax.swing.JButton DisplayBTN;
+    private javax.swing.JButton ToFleet;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
