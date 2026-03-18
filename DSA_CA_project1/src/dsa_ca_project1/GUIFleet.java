@@ -5,6 +5,7 @@
 package dsa_ca_project1;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 public class GUIFleet extends javax.swing.JFrame {
 
     private ArrayList<Vehicle> fleet = new ArrayList<>();
+    private MaintenanceQueue repairShop = new MaintenanceQueue();
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GUIFleet.class.getName());
 
@@ -57,6 +59,9 @@ public class GUIFleet extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDisplayArea = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        txtRepairStatus = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,6 +115,15 @@ public class GUIFleet extends javax.swing.JFrame {
 
         jLabel2.setText("CURRENT FLEET");
 
+        jButton1.setText("REPORT ISSUE");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("the repair shop");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,9 +148,16 @@ public class GUIFleet extends javax.swing.JFrame {
                         .addComponent(backbtn)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRepairStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,9 +165,13 @@ public class GUIFleet extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtRepairStatus)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(backbtn)
                         .addGap(122, 122, 122)
@@ -164,8 +189,9 @@ public class GUIFleet extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(registerBTN)
-                            .addComponent(comboType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(17, Short.MAX_VALUE))
+                            .addComponent(comboType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton1))
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -213,6 +239,22 @@ public class GUIFleet extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backbtnActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // 1. Get the vehicle
+        if (!fleet.isEmpty()) {
+            //Vehicle brokenVehicle = fleetbreak.remove;
+            Vehicle brokenVehicle = fleet.remove(0); // Take it out of my active fleet
+
+            //Add it to the repair queue
+            repairShop.addJob(brokenVehicle);
+
+            //Update displays
+            updateFleetDisplay();
+            txtRepairStatus.setText("Vehicles waiting for repair: " + repairShop.getCount());
+            JOptionPane.showMessageDialog(this, brokenVehicle.getDeviceID() + " sent to maintenance.");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -243,13 +285,16 @@ public class GUIFleet extends javax.swing.JFrame {
     private javax.swing.JLabel Location;
     private javax.swing.JButton backbtn;
     private javax.swing.JComboBox<String> comboType;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton registerBTN;
     private javax.swing.JTextField txtBattery;
     private javax.swing.JTextArea txtDisplayArea;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtLocation;
+    private javax.swing.JTextField txtRepairStatus;
     // End of variables declaration//GEN-END:variables
 }
