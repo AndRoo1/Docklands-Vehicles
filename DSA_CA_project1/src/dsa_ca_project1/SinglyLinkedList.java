@@ -31,7 +31,7 @@ public class SinglyLinkedList implements MyListInterface {
             while (current.getNext() != null) {
                 current = current.getNext();
             }
-            //link the last node to new node
+            //link last node 2 new node
             current.setNext(newNode);
         }
         size++;
