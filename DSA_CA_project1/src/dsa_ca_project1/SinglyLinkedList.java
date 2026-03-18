@@ -12,9 +12,30 @@ public class SinglyLinkedList implements MyListInterface{
     private Node head;
     private int size;
 
+public SinglyLinkedList() {
+    head = null;
+    size = 0;
+}
+    
+    
     @Override
     public void add(Object obj) {
-        //the logic here to add a node
+        Node newNode = new Node(obj);
+        
+        //if List is empty
+        if (head == null) {
+            head = newNode;
+        } 
+        //if List has items find the end
+        else {
+            Node current = head;
+            while (current.getNext() != null) {
+                current = current.getNext();
+            }
+            //link the last node to new node
+            current.setNext(newNode);
+        }
+        size++;
     }
 
     @Override

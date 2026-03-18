@@ -9,7 +9,9 @@ package dsa_ca_project1;
  * @author Andrew
  */
 public class GUI extends javax.swing.JFrame {
+
     
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GUI.class.getName());
 
     /**
